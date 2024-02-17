@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watch</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div id="container">
+        <div id="nav">
+          <h5><a href="/delete">Update</a></h5>
+        </div>
+        <div id="todaywatch">
+          <%  let number = Math.floor(Math.random() * file.length) %>
+
+          <h1 class="displaywatch"><%= file[number] %></h1>
+          <h3>Today's Watch</h3>
+        </div>
+
+        <div id="question">
+          <label for="yes">Want to add a new Watch?</label><br />
+          <button type="submit" class="choice" value="yes">Yes</button>
+          <button type="submit" class="choice" value="no">No</button>
+        </div>
+        <div id="watchDetails">
+          <form action="/" method="post">
+            <label for="">Which Watch did you Buy?</label>
+            <input type="text" class="brand" name="brand" required /><br />
+            <label for="">At What Price?</label>
+            <input type="text" class="price" name="price" required /><br />
+            <label for="">When did you buy? Date?</label>
+            <input
+              type="date"
+              class="date"
+              name="date"
+              required
+              placeholder="DD-MM-YYYY"
+            />
+            <br />
+            <button type="submit" class="formsubmitted" value="true">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let allWatches = [
+        {
+          Maserati: {
+            BuyiedAt: new Date("7-5-2023"),
+            price: 0,
+          },
+          TimexGreen: {
+            BuyiedAt: new Date("7-7-2023"),
+            price: 6597,
+          },
+          TimexBlue: {
+            BuyiedAt: new Date("7-7-2023"),
+            price: 6597,
+          },
+          GshockB2100: {
+            BuyiedAt: new Date("14-10-2023"),
+            price: 6526,
+          },
+          DWCChronograph: {
+            BuyiedAt: new Date("7-2-2024"),
+            price: 2799,
+          },
+          GshockBlack: {
+            BuyiedAt: new Date("7-5-2023"),
+            price: 0,
+          },
+        },
+      ]
+      let allWatchesString = [
+        "Maserati",
+        "TimexGreen",
+        "TimexBlue",
+        "GshockB2100",
+        "DWCChronograph",
+        "GshockBlack",
+      ]
+      let number = Math.floor(Math.random() * allWatchesString.length)
+
+      let randomSelectedWatch = allWatchesString[number]
+
+      const todayWatch = $(".displaywatch")
+      // todayWatch.text(randomSelectedWatch)
+
+      $(document).ready(function () {
+        // Handle click event on buttons with class "choice"
+        $(".choice").click(function () {
+          // Get the value of the clicked button
+          var userWant = $(this).val()
+
+          // Check if the user wants to add a new watch
+          if (userWant.toLowerCase() === "yes") {
+            $("#question").slideUp()
+            $("#watchDetails").css("display", "contents")
+          } else {
+            console.log("NOOOO")
+          }
+        })
+      })
+
+      // $(".formsubmitted").click(function () {
+      //   let formValidation = $(this).val()
+      //   if (formValidation == "true") {
+      //     const brand = $(".brand").val()
+      //     const price = $(".price").val()
+      //     const date = $(".date").val()
+      //     allWatchesString.push(brand)
+      //   }
+      // })
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>
